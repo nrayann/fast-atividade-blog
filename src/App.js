@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+
+import Posts from './pages/Posts';
+import Post from './pages/Post';
+import NotFound from './pages/NotFound';
+import Contact from './pages/Contact';
+
+import Layout from './components/Layout';
+
+/**
+  - Criar mais uma rota com o path '/:id/:slug' e element <Post />
+*/
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<Layout />}>
+              <Route path='/' element={<Posts />} />
+              <Route path='/:id/:slug' element={<Post />} />
+              <Route path='/contato' element={<Contact />} />
+              <Route path='*' element={<NotFound />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
     </div>
   );
 }
