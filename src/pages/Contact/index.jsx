@@ -2,10 +2,8 @@ import { useState } from "react";
 
 import {
   Alert,
-  Backdrop,
   Button,
   Checkbox,
-  CircularProgress,
   FormControlLabel,
   Grid,
   Snackbar,
@@ -24,6 +22,18 @@ const defaultFormData = {
   message: "",
   isHuman: false,
 };
+
+/**
+ * Renderizar condicionalmente o componente Loading baseado no estado isLoading
+ *
+ * Adicionar name e evento onChange nos componentes TextField para funcionar com o método handleChange
+ *
+ * Desabilitar componente Button condicionalmente com a props disabled quando isLoading for true ou o formulário não estiver válido
+ *
+ * Corrigir o método getAlert com renderização condicional baseada no valor de errorMessage
+ *
+ * Executar o método sendData quando clicar no botão Enviar
+ */
 
 export default function Contact() {
   const [formData, setFormData] = useState(defaultFormData);
@@ -90,21 +100,21 @@ export default function Contact() {
     formData.name && formData.email && formData.message && formData.isHuman;
 
   const getAlert = () => {
+    /** Renderizar o componente Alert correto de acordo com o valor de errorMessage */
     return (
       <div>
-        {errorMessage ? (
-          <Alert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
-            Erro ao enviar mensagem
-          </Alert>
-        ) : (
-          <Alert
-            onClose={handleClose}
-            severity="success"
-            sx={{ width: "100%" }}
-          >
-            Mensagem enviada com sucesso
-          </Alert>
-        )}
+        {/**
+         * Se errorMessage for true, retornar:
+         */}
+        <Alert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
+          Erro ao enviar mensagem
+        </Alert>
+        {/**
+         *  Se errorMessage for false, retornar:
+         */}
+        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
+          Mensagem enviada com sucesso
+        </Alert>
       </div>
     );
   };
@@ -118,13 +128,12 @@ export default function Contact() {
       >
         {getAlert()}
       </Snackbar>
-      {isLoading && <Loading />}
+      {/* mostrar apenas se isLoading for true */}
+      <Loading />
       <Grid container rowGap={2}>
         <Grid item xs={12}>
           <TextField
             value={formData.name}
-            name="name"
-            onChange={(event) => handleChange(event)}
             label="Nome"
             variant="standard"
             sx={inputStyle}
@@ -133,8 +142,6 @@ export default function Contact() {
         <Grid item xs={12}>
           <TextField
             value={formData.email}
-            name="email"
-            onChange={(event) => handleChange(event)}
             label="E-mail"
             variant="standard"
             sx={inputStyle}
@@ -143,8 +150,6 @@ export default function Contact() {
         <Grid item xs={12}>
           <TextField
             value={formData.message}
-            name="message"
-            onChange={(event) => handleChange(event)}
             label="Mensagem"
             variant="standard"
             multiline
@@ -155,15 +160,16 @@ export default function Contact() {
         <Grid item xs={12}>
           <FormControlLabel
             name="isHuman"
-            label="Sou humano"
             onChange={(event) => handleChange(event)}
+            label="Sou humano"
             control={<Checkbox checked={formData.isHuman} />}
           />
         </Grid>
         <Grid item xs={12}>
           <Button
-            disabled={!isFormValid() || isLoading}
-            onClick={sendData}
+            disabled={
+              true /** aplicar condição usando isLoading e o método isFormValid */
+            }
             variant="outlined"
           >
             Enviar

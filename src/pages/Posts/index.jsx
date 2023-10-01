@@ -1,6 +1,9 @@
+import { useState } from "react";
+
 import { Grid, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+
 import { Link } from "react-router-dom";
+
 import Loading from "../../components/Loading";
 
 const linkStyle = {
@@ -11,28 +14,29 @@ const linkStyle = {
 };
 
 /**
-  - Obter lista de posts através do método getPosts
-  - Utilizar state posts para mostrar em tela lista de posts
-  - Utilizar o método getViewPostRoute para obter rota para usar no componente Link para visualizar um post específico
-  - Utilizar o método formatPostDate para mostrar em tela a data formatada do post
-  - Mostrar o componente Loading enquanto isLoading for true
-*/
+ * Criar um state para posts, inicializá-lo com um array vazio: []
+ *
+ * Utilizar o useEffect para assim que a página carregar executar o método getPosts
+ *
+ * Renderizar condicionalmente o componente Loading baseado no estado isLoading
+ *
+ * Renderizar lista de posts utilizando map, com título, data de criação e link para visualizar post
+ */
 
 export default function Posts() {
-  const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    getPosts();
-  }, []);
-
+  /** utilizar useEffect para obter posts */
   const getPosts = async () => {
     try {
       const response = await fetch(
         "https://api.slingacademy.com/v1/sample-data/blog-posts"
       );
       const data = await response.json();
-      setPosts(data.blogs);
+
+      /**
+       * Armazenar no state posts o valor de data.blogs
+       */
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
@@ -48,17 +52,23 @@ export default function Posts() {
       <Grid item>
         <Typography variant="h4">Publicações</Typography>
       </Grid>
-      {isLoading && <Loading />}
-      {posts.map((post) => (
-        <Grid item key={post.id}>
-          <Link to={getViewPostRoute(post)} style={linkStyle}>
-            <Typography align="left">{post.title}</Typography>
-          </Link>
-          <Typography align="left" variant="caption">
-            {formatPostDate(post.created_at)}
-          </Typography>
-        </Grid>
-      ))}
+      {/* mostrar apenas se isLoading for true */}
+      <Loading />
+      {/* início item post */}
+      <Grid item key={""}>
+        <Link
+          to={
+            "" /** utilizar o método getViewPostRoute para aplicar a rota de visualização do post aqui */
+          }
+          style={linkStyle}
+        >
+          <Typography align="left">{/** title */}</Typography>
+        </Link>
+        <Typography align="left" variant="caption">
+          {/** utilizar o método formatPostDate para renderizar a data aqui */}
+        </Typography>
+      </Grid>
+      {/* fim item post */}
     </Grid>
   );
 }
