@@ -14,11 +14,11 @@ const linkStyle = {
 };
 
 /**
+ * Renderizar condicionalmente o componente Loading baseado no estado isLoading
+ *
  * Criar um state para posts, inicializá-lo com um array vazio: []
  *
  * Utilizar o useEffect para assim que a página carregar executar o método getPosts
- *
- * Renderizar condicionalmente o componente Loading baseado no estado isLoading
  *
  * Renderizar lista de posts utilizando map, com título, data de criação e link para visualizar post
  */

@@ -9,10 +9,6 @@ import Contact from './pages/Contact';
 
 import Layout from './components/Layout';
 
-/**
-  - Criar mais uma rota com o path '/:id/:slug' e element <Post />
-*/
-
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',

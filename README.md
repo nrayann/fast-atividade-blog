@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# FAST Aceleração - Projeto de Conclusão do Módulo React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Neste projeto, você terá a oportunidade de aplicar seus conhecimentos em React, utilizando o Create React App com Material UI, para criar um site de blog. O projeto consiste em três partes principais: uma lista de publicações, uma página de visualização de publicação e um formulário de contato. Além disso, você encontrará desafios específicos para cada uma dessas partes.
 
-## Available Scripts
+## Descrição do Projeto
 
-In the project directory, you can run:
+### Lista de Publicações (pages/Posts/index.jsx)
 
-### `npm start`
+Nesta parte do projeto, você irá criar uma página que exibirá uma lista de publicações. Aqui estão os desafios que você deve cumprir:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Renderizar condicionalmente o componente "Loading" com base no estado `isLoading`.
+- Criar um estado chamado `posts` e inicializá-lo com um array vazio `[]`.
+- Utilizar o hook `useEffect` para, assim que a página carregar, executar o método `getPosts`.
+- Renderizar uma lista de posts utilizando o método `map`, exibindo o título, a data de criação e um link para visualizar o post completo.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Visualização de Publicação (pages/Post/index.jsx)
 
-### `npm test`
+Nesta parte do projeto, você irá criar uma página que permitirá a visualização de uma única publicação. Aqui estão os desafios que você deve cumprir:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Renderizar condicionalmente o componente "Loading" com base no estado `isLoading`.
+- Criar um estado chamado `post` e um estado chamado `postCreate`, ambos inicializados com `null`.
+- Utilizar o hook `useEffect` para, assim que o ID do post estiver disponível, executar o método `getPost`.
+- Utilizar outro hook `useEffect` para, assim que o post estiver disponível, executar o método `getPostCreator`.
+- Renderizar os valores `title`, `photo_url` e `content_html` nos locais apropriados da página.
+- Renderizar os créditos do post chamando o método `getCredits` no local apropriado.
 
-### `npm run build`
+### Formulário de Contato (pages/Contact/index.jsx)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Nesta parte do projeto, você irá criar um formulário de contato. Aqui estão os desafios que você deve cumprir:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Renderizar condicionalmente o componente "Loading" com base no estado `isLoading`.
+- Adicionar o atributo `name` e o evento `onChange` aos componentes `TextField` para que funcionem com o método `handleChange`.
+- Desabilitar o componente `Button` condicionalmente com a prop `disabled` quando `isLoading` for verdadeiro ou o formulário não estiver válido.
+- Corrigir o método `getAlert` com renderização condicional baseada no valor de `errorMessage`.
+- Executar o método `sendData` quando o botão "Enviar" for clicado.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Como Iniciar o Projeto
 
-### `npm run eject`
+1.  Baixe este projeto para sua máquina local.
+2.  Navegue até a pasta do projeto usando o terminal.
+3.  Instale as dependências do projeto com o comando `npm install`.
+4.  Execute o projeto com o comando `npm start`.
+5.  Acesse o projeto no seu navegador em `http://localhost:3000`.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Links úteis
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [Documentação - Create React App](https://create-react-app.dev/docs/getting-started)
+- [Documentação - useEffect hook](https://react.dev/reference/react/useEffect)
+- [Documentação - useState hook](https://react.dev/reference/react/useState#setstate)
+- [Documentação - Renderizando listas com map()](https://react.dev/learn/rendering-lists)
+- [Documentação - Material UI](https://mui.com/material-ui/getting-started/)
