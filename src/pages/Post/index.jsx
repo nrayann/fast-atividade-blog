@@ -15,7 +15,7 @@ const linkStyle = {
 /**
  * Renderizar condicionalmente o componente Loading baseado no estado isLoading
  *
- * Criar um state para post e um state para postCreate, ambos devem ser inicializados com null
+ * Criar um state para post e um state para postCreator, ambos devem ser inicializados com null
  *
  * Utilizar o useEffect para assim que tiver o id do post executar o método getPost
  * Utilizar o useEffect para assim que tiver o post executar o método getPostCreator
