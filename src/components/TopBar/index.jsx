@@ -27,7 +27,7 @@ export default function TopBar() {
 
   const goToHome = () => navigate("/");
   return (
-    <AppBar component="nav">
+    <AppBar component="nav" data-testid="topBar">
       <Container maxWidth="md">
         <Toolbar disableGutters>
           <Button

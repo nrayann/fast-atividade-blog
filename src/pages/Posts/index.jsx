@@ -44,13 +44,13 @@ export default function Posts() {
   const formatPostDate = (date) => new Date(date).toLocaleDateString("pt-BR");
 
   return (
-    <Grid container rowGap={2} direction={"column"}>
+    <Grid container rowGap={2} direction={"column"} data-testid="postsList">
       <Grid item>
         <Typography variant="h4">Publicações</Typography>
       </Grid>
       {isLoading && <Loading />}
       {posts.map((post) => (
-        <Grid item key={post.id}>
+        <Grid item key={post.id} data-testid="postItem">
           <Link to={getViewPostRoute(post)} style={linkStyle}>
             <Typography align="left">{post.title}</Typography>
           </Link>

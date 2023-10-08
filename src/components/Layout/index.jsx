@@ -14,7 +14,11 @@ export default function Layout() {
     <>
       <CssBaseline />
       <TopBar />
-      <Container maxWidth="md" sx={containerStyle}>
+      <Container
+        maxWidth="md"
+        sx={containerStyle}
+        data-testid="layoutContainer"
+      >
         <Outlet />
       </Container>
     </>

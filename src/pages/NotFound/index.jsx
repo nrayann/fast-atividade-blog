@@ -9,6 +9,7 @@ const NotFound = () => {
   const navigate = useNavigate();
   return (
     <Box
+      data-testid="notFound"
       sx={{
         display: "flex",
         flexDirection: "column",

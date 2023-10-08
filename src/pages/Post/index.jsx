@@ -51,7 +51,9 @@ export default function Post() {
       }
     };
 
-    getPostCreator();
+    if (post) {
+      getPostCreator();
+    }
   }, [post]);
 
   const getCredids = (post, postCreator) =>

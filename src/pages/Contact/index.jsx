@@ -2,10 +2,8 @@ import { useState } from "react";
 
 import {
   Alert,
-  Backdrop,
   Button,
   Checkbox,
-  CircularProgress,
   FormControlLabel,
   Grid,
   Snackbar,
@@ -113,7 +111,7 @@ export default function Contact() {
     <>
       <Snackbar
         open={openSnackBar}
-        autoHideDuration={6000}
+        autoHideDuration={60000000}
         onClose={handleClose}
       >
         {getAlert()}
@@ -128,6 +126,9 @@ export default function Contact() {
             label="Nome"
             variant="standard"
             sx={inputStyle}
+            inputProps={{
+              "data-testid": "nameInput",
+            }}
           />
         </Grid>
         <Grid item xs={12}>
@@ -138,6 +139,9 @@ export default function Contact() {
             label="E-mail"
             variant="standard"
             sx={inputStyle}
+            inputProps={{
+              "data-testid": "emailInput",
+            }}
           />
         </Grid>
         <Grid item xs={12}>
@@ -150,6 +154,9 @@ export default function Contact() {
             multiline
             minRows={3}
             sx={inputStyle}
+            inputProps={{
+              "data-testid": "messageInput",
+            }}
           />
         </Grid>
         <Grid item xs={12}>
@@ -157,7 +164,14 @@ export default function Contact() {
             name="isHuman"
             label="Sou humano"
             onChange={(event) => handleChange(event)}
-            control={<Checkbox checked={formData.isHuman} />}
+            control={
+              <Checkbox
+                checked={formData.isHuman}
+                inputProps={{
+                  "data-testid": "isHumanInput",
+                }}
+              />
+            }
           />
         </Grid>
         <Grid item xs={12}>
