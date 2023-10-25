@@ -106,15 +106,23 @@ export default function Contact() {
         {/**
          * Se errorMessage for true, retornar:
          */}
-        <Alert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
-          Erro ao enviar mensagem
-        </Alert>
+        {errorMessage && (
+          <Alert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
+            Erro ao enviar mensagem
+          </Alert>
+        )}
         {/**
          *  Se errorMessage for false, retornar:
          */}
-        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
-          Mensagem enviada com sucesso
-        </Alert>
+        {!errorMessage && (
+          <Alert
+            onClose={handleClose}
+            severity="success"
+            sx={{ width: "100%" }}
+          >
+            Mensagem enviada com sucesso
+          </Alert>
+        )}
       </div>
     );
   };
@@ -129,10 +137,12 @@ export default function Contact() {
         {getAlert()}
       </Snackbar>
       {/* mostrar apenas se isLoading for true */}
-      <Loading />
+      {isLoading && <Loading />}
       <Grid container rowGap={2}>
         <Grid item xs={12}>
           <TextField
+            name="name"
+            onChange={(event) => handleChange(event)}
             value={formData.name}
             label="Nome"
             variant="standard"
@@ -141,6 +151,8 @@ export default function Contact() {
         </Grid>
         <Grid item xs={12}>
           <TextField
+            name="email"
+            onChange={(event) => handleChange(event)}
             value={formData.email}
             label="E-mail"
             variant="standard"
@@ -149,6 +161,8 @@ export default function Contact() {
         </Grid>
         <Grid item xs={12}>
           <TextField
+            name="message"
+            onChange={(event) => handleChange(event)}
             value={formData.message}
             label="Mensagem"
             variant="standard"
@@ -167,9 +181,8 @@ export default function Contact() {
         </Grid>
         <Grid item xs={12}>
           <Button
-            disabled={
-              true /** aplicar condição usando isLoading e o método isFormValid */
-            }
+            onClick={sendData}
+            disabled={isLoading || !isFormValid()}
             variant="outlined"
           >
             Enviar
